@@ -10,6 +10,8 @@ public class Door : MonoBehaviour
 	public BoxCollider2D doorCollider;
 	public Inventory inventory;
 	public bool playerInRange;
+	public DialogTest dialog;
+	public PlayerMove player;
 
     void Start()
     {
@@ -41,8 +43,12 @@ public class Door : MonoBehaviour
 			if (inventory.rustedKey == gameObject.tag && CrossPlatformInputManager.GetButtonDown("Fire1"))
 			{
 				gameObject.GetComponent<DialogTest>().enabled = false;
-				doorSprite.enabled = false;
+				dialog.image.SetActive(false);
+				dialog.dialogBox.SetActive(false);
+				Destroy(gameObject);
 				doorCollider.enabled = false;
+				player.playerMove = true;
+				doorSprite.enabled = false;	
 			}
 			if (inventory.goldenKey == gameObject.tag && CrossPlatformInputManager.GetButtonDown("Fire1"))
 			{

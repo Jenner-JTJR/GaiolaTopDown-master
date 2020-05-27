@@ -16,11 +16,12 @@ public class DialogTest : MonoBehaviour
 	public float typingSpeed;
 	public bool canContinue;
 	public GameObject image;
+	public PlayerMove player;
 
 	// Start is called before the first frame update
 	void Start()
     {
-	
+		canContinue = true;
 	}
 
 	private void Update()
@@ -29,7 +30,6 @@ public class DialogTest : MonoBehaviour
 		{
 			canContinue = true;
 		}
-
 
 		DialogInputSystem();
 	}
@@ -58,6 +58,7 @@ public class DialogTest : MonoBehaviour
 		{
 			if (dialogBox.activeInHierarchy == false)
 			{
+				player.playerMove = false;
 				dialogBox.SetActive(true);
 				image.SetActive(true);
 				StartCoroutine(Type());
@@ -69,6 +70,7 @@ public class DialogTest : MonoBehaviour
 		}
 		else if (dialogBox && index == sentences.Length - 1)
 		{
+			player.playerMove = true;
 			dialogBox.SetActive(false);
 			image.SetActive(false);
 			index = 0;
