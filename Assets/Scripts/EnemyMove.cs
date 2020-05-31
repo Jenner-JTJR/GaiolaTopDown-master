@@ -13,6 +13,8 @@ public class EnemyMove : MonoBehaviour
 	public bool teste;
 	public Animator animator;
 	private Vector2 direction;
+	public float lastPosH;
+	public float lastPosV;
 	public Vector2 directionNew;
 	public Vector2 directionNow;
 
@@ -20,7 +22,8 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
 		Wpoints = GameObject.FindGameObjectWithTag("Waypoints").GetComponent<Waypoints>();
-    }
+		Physics2D.queriesStartInColliders = false;
+	}
 
     // Update is called once per frame
     void Update()
@@ -73,6 +76,35 @@ public class EnemyMove : MonoBehaviour
 		else
 		{
 			animator.SetBool("Moving", false);
+		}
+
+		if (direction.x < 0.7f && direction.y >= 0.7)
+		{
+			lastPosH = 0f;
+			lastPosV = 0.7f;
+			animator.SetFloat("HorizontalIdle", lastPosH);
+			animator.SetFloat("VerticalIdle", lastPosV);
+		}
+		else if (direction.x < 0.7f && direction.y <= -0.7)
+		{
+			lastPosH = 0f;
+			lastPosV = -0.7f;
+			animator.SetFloat("HorizontalIdle", lastPosH);
+			animator.SetFloat("VerticalIdle", lastPosV);
+		}
+		else if (direction.x >= 0.7f && direction.y < 0.7)
+		{
+			lastPosH = 0.7f;
+			lastPosV = 0f;
+			animator.SetFloat("HorizontalIdle", lastPosH);
+			animator.SetFloat("VerticalIdle", lastPosV);
+		}
+		else if (direction.x <= -0.7f && direction.y < 0.7)
+		{
+			lastPosH = -0.7f;
+			lastPosV = 0f;
+			animator.SetFloat("HorizontalIdle", lastPosH);
+			animator.SetFloat("VerticalIdle", lastPosV);
 		}
 	}
 

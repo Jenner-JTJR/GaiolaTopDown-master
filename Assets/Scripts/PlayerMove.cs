@@ -9,17 +9,36 @@ public class PlayerMove : MonoBehaviour
 	public Joystick joystick; //Joystick virtual da AssetStore
 	public float moveSpeed = 5f; //Velocidade de movimento do player
 	public Animator animator;
+	public bool playerMove = true;
+	public float lastPosH;
+	public float lastPosV;
+	public GameObject joyAct;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		playerMove = true;
+		lastPosH = 0f;
+		lastPosV = 0f;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		JoystickMove(); //função que chama a movimentação do player usando o joystick
+		if (playerMove)
+		{
+			//gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+			//moveSpeed = 5f;
+			JoystickMove(); //função que chama a movimentação do player usando o joystick
+		}
+		//else
+		//{
+		//	gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+		//	moveSpeed = 0f;
+		//}
+
+		
 
 		Animation(); //função que chama as animações de movimentação do player
 
@@ -53,5 +72,35 @@ public class PlayerMove : MonoBehaviour
 		{
 			animator.SetBool("Moving", false);
 		}
+
+		if (joystick.Horizontal < 0.7f && joystick.Vertical >= 0.7)
+		{
+			lastPosH = 0f;
+			lastPosV = 0.7f;
+			animator.SetFloat("HorizontalIdle", lastPosH);
+			animator.SetFloat("VerticalIdle", lastPosV);
+		}
+		else if (joystick.Horizontal < 0.7f && joystick.Vertical <= -0.7)
+		{
+			lastPosH = 0f;
+			lastPosV = -0.7f;
+			animator.SetFloat("HorizontalIdle", lastPosH);
+			animator.SetFloat("VerticalIdle", lastPosV);
+		}
+		else if (joystick.Horizontal >= 0.7f && joystick.Vertical < 0.7)
+		{
+			lastPosH = 0.7f;
+			lastPosV = 0f;
+			animator.SetFloat("HorizontalIdle", lastPosH);
+			animator.SetFloat("VerticalIdle", lastPosV);
+		}
+		else if (joystick.Horizontal <= -0.7f && joystick.Vertical < 0.7)
+		{
+			lastPosH = -0.7f;
+			lastPosV = 0f;
+			animator.SetFloat("HorizontalIdle", lastPosH);
+			animator.SetFloat("VerticalIdle", lastPosV);
+		}
+
 	}
 }
