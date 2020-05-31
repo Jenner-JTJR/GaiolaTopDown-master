@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
 	public bool playerMove = true;
 	public float lastPosH;
 	public float lastPosV;
+	public GameObject joyAct;
 
 	// Start is called before the first frame update
 	void Start()
@@ -27,8 +28,15 @@ public class PlayerMove : MonoBehaviour
 	{
 		if (playerMove)
 		{
+			//gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+			//moveSpeed = 5f;
 			JoystickMove(); //função que chama a movimentação do player usando o joystick
 		}
+		//else
+		//{
+		//	gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+		//	moveSpeed = 0f;
+		//}
 
 		
 

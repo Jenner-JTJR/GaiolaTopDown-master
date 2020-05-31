@@ -32,6 +32,8 @@ public class DialogTest : MonoBehaviour
 		}
 
 		DialogInputSystem();
+
+		
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

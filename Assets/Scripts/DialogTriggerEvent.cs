@@ -16,7 +16,8 @@ public class DialogTriggerEvent : MonoBehaviour
 	public float typingSpeed;
 	public bool canContinue;
 	public GameObject image;
-	public PlayerMove player;
+	public GameObject player;
+	public PlayerMove playerMove;
 
 	// Start is called before the first frame update
 	void Start()
@@ -30,18 +31,40 @@ public class DialogTriggerEvent : MonoBehaviour
 		{
 			canContinue = true;
 		}
-
 		DialogInputSystem();
+		if (dialogBox && index == sentences.Length - 1)
+		{
+			dialogBox.SetActive(false);
+			image.SetActive(false);
+			player.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+			playerMove.playerMove = true;
+			Destroy(gameObject);
+			//dialogBox.SetActive(false);
+			//image.SetActive(false);
+			//index = 0;
+		}
+
+		
+
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.CompareTag("Player"))
 		{
+			Debug.Log("PlayerInRage");
 			playerInRange = true;
-			player.playerMove = false;
 			dialogBox.SetActive(false);
 		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if (collision.CompareTag("Player"))
+		{
+			Debug.Log("PlayerOffRange");
+		}
+
 	}
 
 
@@ -51,7 +74,8 @@ public class DialogTriggerEvent : MonoBehaviour
 		{
 			if (dialogBox.activeInHierarchy == false)
 			{
-				player.playerMove = false;
+				player.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+				playerMove.playerMove = false;
 				dialogBox.SetActive(true);
 				image.SetActive(true);
 				StartCoroutine(Type());
@@ -61,17 +85,13 @@ public class DialogTriggerEvent : MonoBehaviour
 				NextSentence();
 			}
 		}
-		else if (dialogBox && index == sentences.Length - 1)
+		/*else if (dialogBox && index == sentences.Length - 1)
 		{
-			player.playerMove = true;
+			player.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 			dialogBox.SetActive(false);
 			image.SetActive(false);
 			index = 0;
-			if (gameObject.tag == "OneTimeEvent")
-			{
-				Destroy(gameObject);
-			}
-		}
+		}*/
 	}
 
 	IEnumerator Type()
