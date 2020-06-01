@@ -12,6 +12,7 @@ public class Door : MonoBehaviour
 	public bool playerInRange;
 	public DialogTest dialog;
 	public PlayerMove player;
+	public AudioSource AbrindoP;
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class Door : MonoBehaviour
 	{
 		if (inventory.rustedKey == gameObject.tag)
 		{
+			AbrindoP.Play();
 			gameObject.GetComponent<DialogTest>().enabled = false;
 			dialog.image.SetActive(false);
 			if (CrossPlatformInputManager.GetButtonDown("Fire1") && playerInRange)

@@ -6,14 +6,17 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
+    public GameObject som;
+    public GameObject musica;
     public Vector3 LastCheckPointPos;
     public Vector2 cameraChangeMax;
     public Vector2 cameraChangeMin;
     public Vector3 playerChange;
     private static GameMaster instance;
-    public AudioSource Musica;
-    public float Volume = 1;
-
+    public float VolumeMax = 1f;
+    public float VolumeMin = 0f;
+    public float Volume = 1f;
+    public float SoundVol = 1f;
     void Awake()
     {
         if(instance == null)
@@ -29,13 +32,17 @@ public class GameMaster : MonoBehaviour
     }
     void Start()
     {
-       
+        
     }
-   public void Volum()
+    void Update()
     {
-        
-        
-
-
+         if(Volume > VolumeMax)
+        {
+            Volume = 1f;
+        }
+         if(Volume < VolumeMin)
+        {
+            Volume = 0f;
+        }
     }
 }

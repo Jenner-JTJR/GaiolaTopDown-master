@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuPrincipal : MonoBehaviour
 {
+    public GameMaster gm;
     public GameObject Menu;
     public GameObject Jogar;
     public GameObject Opcoes;
@@ -20,16 +21,23 @@ public class MenuPrincipal : MonoBehaviour
   
     
    
+    void Start()
+    {
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+    }
 
     public void menuPrincipal()
     {
+       gm.som.SetActive(true);
         LeanTween.moveLocal(Menu, new Vector3(0.008f, -1.878f, 1), 0.6f);
         LeanTween.scale(Menu, new Vector3(0.019f, 0.019f, 1), 0.6f).setOnComplete(IniciarJogo);
+        
 
       
     }
     void IniciarJogo()
     {
+        
         SceneManager.LoadScene(1);
     }
     public void opcoes()
