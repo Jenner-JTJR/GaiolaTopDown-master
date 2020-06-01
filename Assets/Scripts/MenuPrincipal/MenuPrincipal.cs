@@ -41,7 +41,7 @@ public class MenuPrincipal : MonoBehaviour
             
             LeanTween.scale(Sair, new Vector3(0, 0, 0), 0.2f);
 
-            LeanTween.moveLocal(Opcoes, new Vector3(0, -66, 0), 0.5f).setOnComplete(OpcoesClose);
+            LeanTween.moveLocal(Opcoes, new Vector3(-149.5f, -65.8f, 0), 0.5f).setOnComplete(OpcoesClose);
      }
     void OpcoesClose()
     {
@@ -55,7 +55,7 @@ public class MenuPrincipal : MonoBehaviour
     public void VoltarOpcoes()
     {
         ZoomOut();
-            LeanTween.moveLocal(Opcoes, new Vector3(97.2f, -120.84f, 0f), 0.5f).setOnComplete(OpcoesOpen);
+            LeanTween.moveLocal(Opcoes, new Vector3(89.79001f, -131.9f, 0f), 0.5f).setOnComplete(OpcoesOpen);
             Voltar.SetActive(false);
             Musica.SetActive(false);
             Som.SetActive(false);
@@ -66,7 +66,7 @@ public class MenuPrincipal : MonoBehaviour
     {
         ZoomOut();
        
-        LeanTween.moveLocal(Controle, new Vector3(-99.55499f, -204.3f, 0f), 0.5f);
+        LeanTween.moveLocal(Controle, new Vector3(-102.84f, -204.3f, 0f), 0.5f);
         LeanTween.scale(ControlesPainel, new Vector3(0, 0, 0), 0.5f);
         ControlesPainel.SetActive(false);
         Jogar.SetActive(true);
@@ -108,7 +108,7 @@ public class MenuPrincipal : MonoBehaviour
 
             LeanTween.scale(ControlesPainel, new Vector3 (0 ,0 ,0), 0.2f);
            
-            LeanTween.moveLocal(Controle, new Vector3(0, -66, 0), 0.5f).setOnComplete(ControleOpen);
+            LeanTween.moveLocal(Controle, new Vector3(-154.4f, -65.9f, 0), 0.5f).setOnComplete(ControleOpen);
 
             VoltarControle.SetActive(true);
         }
@@ -123,8 +123,8 @@ public class MenuPrincipal : MonoBehaviour
 
     }
     public void ZoomIn() {
-        LeanTween.moveLocal(Menu, new Vector3(-0.06f, 3.13f, 1), 0.6f);
-        LeanTween.scale(Menu, new Vector3(0.019f, 0.019f, 1), 0.6f);
+        LeanTween.moveLocal(Menu, new Vector3(-0.06f, 2.13f, 1), 0.6f);
+        LeanTween.scale(Menu, new Vector3(0.018f, 0.018f, 1), 0.6f);
       
     }
     public void ZoomOut()
